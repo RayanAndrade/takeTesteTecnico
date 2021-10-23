@@ -1,4 +1,4 @@
-const gitController = require('./controller/gitController');
+const blipController = require('./controller/blipController');
 
 module.exports = ( app ) => {
 
@@ -7,5 +7,5 @@ module.exports = ( app ) => {
         res.status(200).json("API rodando com sucesso!");
     });
 
-    app.get('/getRepositoryByLanguage/:language', gitController.getRepositoryByLanguage)
+    app.get('/getFiveRepositoriesAsCarroussel/:language', blipController.getFiveRepositoriesAsCarroussel)
 }

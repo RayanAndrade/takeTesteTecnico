@@ -1,9 +1,8 @@
 const getAllRepositories = require('./getAllRepositories');
 
-const getRepositoryByLanguage = async ( req, res ) => {
+const getRepositoryByLanguage = async ( language ) => {
     
     try {
-        const { language } = req.params;
         const allRepositories = await getAllRepositories();
 
         const selectedLanguageRepositorires = allRepositories.filter(repository => {
@@ -19,14 +18,16 @@ const getRepositoryByLanguage = async ( req, res ) => {
             return new Date(a.created_at) - new Date(b.created_at);
         });
 
-        return res.status(200).json(selectedLanguageRepositoriresAsc)
+        return selectedLanguageRepositoriresAsc
         
     } catch (error) {
         
         console.error("Houve um erro ao consultar o método getRepositoryByLanguage");
         console.error(error);
         
-        return res.status(400);
+        const fakeResponse = [{}];
+
+        return fakeResponse;
     }
 }
 
